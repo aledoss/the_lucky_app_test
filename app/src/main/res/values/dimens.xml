@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing -->
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xxsmall">4dp</dimen>
+
+    <!-- Fonts -->
+    <dimen name="medium_font">16sp</dimen>
+    <dimen name="big_font">24sp</dimen>
+
+    <!-- Items -->
+    <dimen name="item_height">80dp</dimen>
+    <dimen name="item_offer_image_width">120dp</dimen>
+</resources>
