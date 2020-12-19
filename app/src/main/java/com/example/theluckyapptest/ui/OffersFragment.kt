@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.theluckyapptest.databinding.FragmentOffersBinding
+import com.example.theluckyapptest.providers.RepositoryProvider
 import com.example.theluckyapptest.viewmodels.OffersViewModel
 import com.example.theluckyapptest.viewmodels.OffersViewModelFactory
 
 class OffersFragment : Fragment() {
 
     private val viewModel: OffersViewModel by viewModels {
-        OffersViewModelFactory()
+        OffersViewModelFactory(RepositoryProvider.offersRepository)
     }
 
     private var _binding: FragmentOffersBinding? = null
