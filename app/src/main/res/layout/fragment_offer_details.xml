@@ -121,6 +121,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/textView_new_price"
                 app:layout_constraintStart_toStartOf="@id/guideline_start"
                 app:layout_constraintTop_toTopOf="@id/textView_new_price"
+                app:strikeThrough="@{true}"
                 tools:text="EGP500" />
 
             <TextView
@@ -167,9 +168,9 @@
                 style="@style/Theme.TheLuckyAppTest.X_SmallText.DarkGray"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xxsmall"
                 android:text="@{viewModel.offerDetails.redemptionCap}"
                 android:textAllCaps="true"
-                android:layout_marginStart="@dimen/spacing_xxsmall"
                 app:layout_constraintBottom_toBottomOf="@id/textView_redemption_title"
                 app:layout_constraintEnd_toEndOf="@id/guideline_end"
                 app:layout_constraintStart_toEndOf="@id/textView_redemption_title"
