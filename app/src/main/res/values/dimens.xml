@@ -2,6 +2,7 @@
 <resources>
     <!-- Spacing -->
     <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xxlarge">24dp</dimen>
     <dimen name="spacing_xxsmall">4dp</dimen>
 
     <!-- Fonts -->

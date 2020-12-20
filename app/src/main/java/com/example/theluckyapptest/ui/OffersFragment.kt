@@ -6,8 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.example.theluckyapptest.R
+import com.example.theluckyapptest.data.Margin
+import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
 import com.example.theluckyapptest.databinding.FragmentOffersBinding
+import com.example.theluckyapptest.helpers.MarginItemDecoration
 import com.example.theluckyapptest.providers.RepositoryProvider
+import com.example.theluckyapptest.ui.adapters.OffersAdapter
 import com.example.theluckyapptest.viewmodels.OffersViewModel
 import com.example.theluckyapptest.viewmodels.OffersViewModelFactory
 
@@ -15,6 +21,9 @@ class OffersFragment : Fragment() {
 
     private val viewModel: OffersViewModel by viewModels {
         OffersViewModelFactory(RepositoryProvider.offersRepository)
+    }
+    private val adapter = OffersAdapter {
+        // TODO implement click offer action
     }
 
     private var _binding: FragmentOffersBinding? = null
@@ -28,6 +37,31 @@ class OffersFragment : Fragment() {
         _binding = FragmentOffersBinding.inflate(inflater, container, false)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bindViewModel()
+        configureRecyclerView()
+    }
+
+    private fun configureRecyclerView() {
+        binding.recyclerViewOffers.apply {
+            adapter = this@OffersFragment.adapter
+            addItemDecoration(
+                MarginItemDecoration(
+                    Margin(resources.getDimensionPixelSize(R.dimen.spacing_xxlarge))
+                )
+            )
+        }
+    }
+
+    private fun bindViewModel() {
+        viewModel.offerSections.observe(viewLifecycleOwner, Observer(::updateOffersAdapter))
+    }
+
+    private fun updateOffersAdapter(offersSections: List<OffersSectionsViewType>) {
+        adapter.updateOffers(offersSections)
     }
 
     override fun onDestroyView() {
