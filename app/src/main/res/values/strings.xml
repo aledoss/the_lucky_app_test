@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">TheLuckyApp Test</string>
     <string name="offers">Offers</string>
+    <string name="price">Price</string>
+    <string name="offer_image">Offer image</string>
 </resources>

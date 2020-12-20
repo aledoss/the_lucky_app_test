@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/textView_brand"
-        style="@style/Theme.TheLuckyAppTest.SmallBlueText"
+        style="@style/Theme.TheLuckyAppTest.XX_SmallText.Gray"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_large"
@@ -48,7 +48,7 @@
 
     <TextView
         android:id="@+id/textView_tags"
-        style="@style/Theme.TheLuckyAppTest.SmallBlueText"
+        style="@style/Theme.TheLuckyAppTest.XX_SmallText.Gray"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_xxsmall"
@@ -72,7 +72,7 @@
 
     <TextView
         android:id="@+id/textView_favourite_count"
-        style="@style/Theme.TheLuckyAppTest.SmallBlueText"
+        style="@style/Theme.TheLuckyAppTest.XX_SmallText.Gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
