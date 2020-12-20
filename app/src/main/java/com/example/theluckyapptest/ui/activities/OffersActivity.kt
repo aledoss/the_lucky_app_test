@@ -1,11 +1,12 @@
-package com.example.theluckyapptest
+package com.example.theluckyapptest.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import com.example.theluckyapptest.R
 import com.example.theluckyapptest.databinding.ActivityOffersBinding
-import com.example.theluckyapptest.ui.OffersFragment
+import com.example.theluckyapptest.ui.fragments.OffersFragment
 
 class OffersActivity : AppCompatActivity() {
 

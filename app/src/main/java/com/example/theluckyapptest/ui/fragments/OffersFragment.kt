@@ -1,4 +1,4 @@
-package com.example.theluckyapptest.ui
+package com.example.theluckyapptest.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
