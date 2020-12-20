@@ -7,7 +7,7 @@ import com.example.theluckyapptest.extensions.toOfferSectionsViewType
 
 class OffersRepositoryImpl : OffersRepository {
 
-    override fun getOffersSections(): List<OffersSectionsViewType> {
+    override suspend fun getOffersSections(): List<OffersSectionsViewType> {
         return listOf<OffersSection>(
             OffersSection(
                 "Top Cashbacks",
