@@ -149,21 +149,32 @@
                 tools:text="Exp.28 April 2020" />
 
             <TextView
-                android:id="@+id/textView_redemption_cap"
-                style="@style/Theme.TheLuckyAppTest.XX_SmallText.DarkGray"
+                android:id="@+id/textView_redemption_title"
+                style="@style/Theme.TheLuckyAppTest.X_SmallText.DarkGray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xxbig"
                 android:layout_marginBottom="@dimen/spacing_xxxbig"
-                android:lineSpacingExtra="2dp"
-                android:text="@{viewModel.offerDetails.redemptionCap}"
-                android:textColor="@color/gray_800"
-                android:textSize="@dimen/x_small_font"
+                android:text="@string/redemptions_cap"
+                android:textAllCaps="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline_start"
                 app:layout_constraintTop_toBottomOf="@id/textView_new_price"
-                app:layout_constraintVertical_bias="0"
-                tools:text="Exp.28 April 2020" />
+                app:layout_constraintVertical_bias="0" />
+
+            <TextView
+                android:id="@+id/textView_redemption_cap"
+                style="@style/Theme.TheLuckyAppTest.X_SmallText.DarkGray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.offerDetails.redemptionCap}"
+                android:textAllCaps="true"
+                android:layout_marginStart="@dimen/spacing_xxsmall"
+                app:layout_constraintBottom_toBottomOf="@id/textView_redemption_title"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toEndOf="@id/textView_redemption_title"
+                app:layout_constraintTop_toTopOf="@id/textView_redemption_title"
+                tools:text="4 TIMES" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

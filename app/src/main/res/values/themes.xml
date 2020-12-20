@@ -26,4 +26,14 @@
     <style name="Theme.TheLuckyAppTest.XX_SmallText.DarkGray">
         <item name="android:textColor">@color/gray_800</item>
     </style>
+
+    <style name="Theme.TheLuckyAppTest.X_SmallText">
+        <item name="android:textSize">@dimen/x_small_font</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="Theme.TheLuckyAppTest.X_SmallText.DarkGray">
+        <item name="android:textColor">@color/gray_800</item>
+    </style>
+
 </resources>
