@@ -2,11 +2,13 @@ package com.example.theluckyapptest.repositories
 
 import com.example.theluckyapptest.data.Offer
 import com.example.theluckyapptest.data.OffersSection
+import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
+import com.example.theluckyapptest.extensions.toOfferSectionsViewType
 
 class OffersRepositoryImpl : OffersRepository {
 
-    override fun getOffers(): List<OffersSection> {
-        return listOf(
+    override fun getOffersSections(): List<OffersSectionsViewType> {
+        return listOf<OffersSection>(
             OffersSection(
                 "Top Cashbacks",
                 listOf(
@@ -49,6 +51,6 @@ class OffersRepositoryImpl : OffersRepository {
                     )
                 )
             )
-        )
+        ).toOfferSectionsViewType()
     }
 }

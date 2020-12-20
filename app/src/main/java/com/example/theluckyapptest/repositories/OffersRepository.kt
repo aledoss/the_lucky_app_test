@@ -1,7 +1,7 @@
 package com.example.theluckyapptest.repositories
 
-import com.example.theluckyapptest.data.OffersSection
+import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
 
 interface OffersRepository {
-    fun getOffers(): OffersSection
+    fun getOffersSections(): List<OffersSectionsViewType>
 }

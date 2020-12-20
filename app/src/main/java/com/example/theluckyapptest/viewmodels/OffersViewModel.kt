@@ -12,6 +12,6 @@ class OffersViewModel(
     }
 
     private fun retrieveOffers() {
-        offersRepository.getOffers()
+        offersRepository.getOffersSections()
     }
 }
