@@ -6,9 +6,10 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.theluckyapptest.R
 import com.example.theluckyapptest.databinding.ActivityOffersBinding
+import com.example.theluckyapptest.navigation.OffersNavigation
 import com.example.theluckyapptest.ui.fragments.OffersFragment
 
-class OffersActivity : AppCompatActivity() {
+class OffersActivity : AppCompatActivity(), OffersNavigation {
 
     private val binding: ActivityOffersBinding by lazy {
         ActivityOffersBinding.inflate(layoutInflater)
@@ -29,5 +30,9 @@ class OffersActivity : AppCompatActivity() {
             setReorderingAllowed(true)
             add<OffersFragment>(R.id.fragmentContainerView, OffersFragment::class.simpleName)
         }
+    }
+
+    override fun goToOfferDetails(offerUrl: String) {
+        // Go to offer details fragment
     }
 }
