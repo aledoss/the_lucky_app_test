@@ -17,7 +17,7 @@ import com.example.theluckyapptest.navigation.OffersNavigation
 import com.example.theluckyapptest.providers.RepositoryProvider
 import com.example.theluckyapptest.ui.adapters.OffersAdapter
 import com.example.theluckyapptest.viewmodels.OffersViewModel
-import com.example.theluckyapptest.viewmodels.OffersViewModelFactory
+import com.example.theluckyapptest.viewmodels.factories.OffersViewModelFactory
 
 class OffersFragment : Fragment() {
 
