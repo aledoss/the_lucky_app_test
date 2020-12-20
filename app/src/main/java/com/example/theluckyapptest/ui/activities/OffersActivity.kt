@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import com.example.theluckyapptest.R
 import com.example.theluckyapptest.databinding.ActivityOffersBinding
 import com.example.theluckyapptest.navigation.OffersNavigation
@@ -38,7 +37,11 @@ class OffersActivity : AppCompatActivity(), OffersNavigation {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             addToBackStack(null)
-            replace<OfferDetailsFragment>(R.id.fragmentContainerView, OfferDetailsFragment::class.simpleName)
+            replace(
+                R.id.fragmentContainerView,
+                OfferDetailsFragment.newInstance(offerUrl),
+                OfferDetailsFragment::class.simpleName
+            )
         }
     }
 }
