@@ -2,7 +2,9 @@ package com.example.theluckyapptest.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.theluckyapptest.R
 import com.example.theluckyapptest.data.Offer
 import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
 import com.example.theluckyapptest.data.offersectionsviewtype.VIEW_TYPE_HEADER
@@ -72,6 +74,25 @@ class OffersAdapter(private val listener: OnOfferClickListener) :
 
         fun bind(title: String) {
             itemBinding.textViewTitle.text = title
+            if (adapterPosition != 0) {
+                addMarginTopToRoot()
+            }
+        }
+
+        private fun addMarginTopToRoot() {
+            itemBinding.root.apply {
+                val newLayoutParams = FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT
+                )
+                newLayoutParams.setMargins(
+                    0,
+                    context.resources.getDimensionPixelSize(R.dimen.spacing_xxlarge),
+                    0,
+                    0
+                )
+                layoutParams = newLayoutParams
+            }
         }
     }
 
