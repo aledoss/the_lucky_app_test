@@ -1,150 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+<layout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.theluckyapptest.viewmodels.OfferDetailsViewModel" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/spacing_xxlarge" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/spacing_xxlarge" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_xxlarge" />
 
-        <ImageView
-            android:id="@+id/imageView_offer"
-            android:layout_width="wrap_content"
-            android:layout_height="215dp"
-            android:contentDescription="@string/offer_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_xxlarge" />
 
-        <TextView
-            android:id="@+id/textView_brand"
-            style="@style/Theme.TheLuckyAppTest.XX_SmallText.Gray"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xxxlarge"
-            android:textAllCaps="true"
-            app:layout_constraintEnd_toStartOf="@id/textView_favourite_count"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_offer"
-            tools:text="Brand" />
+            <ImageView
+                android:id="@+id/imageView_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="215dp"
+                android:contentDescription="@string/offer_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        <TextView
-            android:id="@+id/textView_favourite_count"
-            style="@style/Theme.TheLuckyAppTest.XX_SmallText.Gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/spacing_xxsmall"
-            app:drawableStartCompat="@drawable/ic_small_heart"
-            app:layout_constraintBottom_toBottomOf="@id/textView_brand"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintTop_toTopOf="@id/textView_brand"
-            tools:text="478" />
+            <TextView
+                android:id="@+id/textView_brand"
+                style="@style/Theme.TheLuckyAppTest.XX_SmallText.Gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xxxlarge"
+                android:text="@{viewModel.offerDetails.brand}"
+                android:textAllCaps="true"
+                app:layout_constraintEnd_toStartOf="@id/textView_favourite_count"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_offer"
+                tools:text="Brand" />
 
-        <TextView
-            android:id="@+id/textView_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xxsmall"
-            android:lineSpacingExtra="6dp"
-            android:textColor="@color/gray_800"
-            android:textSize="@dimen/xxbig_font"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/textView_brand"
-            tools:text="25% discount on hamburgers" />
+            <TextView
+                android:id="@+id/textView_favourite_count"
+                style="@style/Theme.TheLuckyAppTest.XX_SmallText.Gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_xxsmall"
+                android:text="@{String.valueOf(viewModel.offerDetails.favoriteCount)}"
+                app:drawableStartCompat="@drawable/ic_small_heart"
+                app:layout_constraintBottom_toBottomOf="@id/textView_brand"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintTop_toTopOf="@id/textView_brand"
+                tools:text="478" />
 
-        <TextView
-            android:id="@+id/textView_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xxlarge"
-            android:lineSpacingExtra="3dp"
-            android:textColor="@color/gray_800"
-            android:textSize="@dimen/medium_font"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/textView_title"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium aenean pharetra magna ac placerat vestibulum lectus. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Viverra aliquet eget sit amet tellus. Sit amet justo donec enim diam vulputate ut. Vel facilisis volutpat est velit egestas dui id. A scelerisque purus semper eget. Volutpat commodo sed egestas egestas fringilla phasellus. Urna molestie at elementum eu facilisis sed. Velit ut tortor pretium viverra. Sit amet volutpat consequat mauris nunc congue. Accumsan in nisl nisi scelerisque eu. Duis at consectetur lorem donec massa sapien faucibus et." />
+            <TextView
+                android:id="@+id/textView_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xxsmall"
+                android:lineSpacingExtra="6dp"
+                android:text="@{viewModel.offerDetails.title}"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/xxbig_font"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/textView_brand"
+                tools:text="25% discount on hamburgers" />
 
-        <TextView
-            android:id="@+id/textView_price_title"
-            style="@style/Theme.TheLuckyAppTest.XX_SmallText.DarkGray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xxbig"
-            android:text="@string/price"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/textView_description" />
+            <TextView
+                android:id="@+id/textView_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xxlarge"
+                android:lineSpacingExtra="3dp"
+                android:text="@{viewModel.offerDetails.description}"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/medium_font"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/textView_title"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium aenean pharetra magna ac placerat vestibulum lectus. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Viverra aliquet eget sit amet tellus. Sit amet justo donec enim diam vulputate ut. Vel facilisis volutpat est velit egestas dui id. A scelerisque purus semper eget. Volutpat commodo sed egestas egestas fringilla phasellus. Urna molestie at elementum eu facilisis sed. Velit ut tortor pretium viverra. Sit amet volutpat consequat mauris nunc congue. Accumsan in nisl nisi scelerisque eu. Duis at consectetur lorem donec massa sapien faucibus et." />
 
-        <TextView
-            android:id="@+id/textView_old_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="2dp"
-            android:textColor="@color/gray_500"
-            android:textSize="@dimen/small_font"
-            app:layout_constraintBottom_toBottomOf="@id/textView_new_price"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toTopOf="@id/textView_new_price"
-            tools:text="EGP500" />
+            <TextView
+                android:id="@+id/textView_price_title"
+                style="@style/Theme.TheLuckyAppTest.XX_SmallText.DarkGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xxbig"
+                android:text="@string/price"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/textView_description" />
 
-        <TextView
-            android:id="@+id/textView_new_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_large"
-            android:layout_marginTop="@dimen/spacing_xxsmall"
-            android:lineSpacingExtra="3dp"
-            android:textColor="@color/gray_800"
-            android:textSize="@dimen/xmedium_font"
-            app:layout_constraintStart_toEndOf="@id/textView_old_price"
-            app:layout_constraintTop_toBottomOf="@id/textView_price_title"
-            tools:text="EGP500" />
+            <TextView
+                android:id="@+id/textView_old_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="2dp"
+                android:text="@{viewModel.offerDetails.price.old}"
+                android:textColor="@color/gray_500"
+                android:textSize="@dimen/small_font"
+                app:layout_constraintBottom_toBottomOf="@id/textView_new_price"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toTopOf="@id/textView_new_price"
+                tools:text="EGP500" />
 
-        <TextView
-            android:id="@+id/textView_expiration_date"
-            style="@style/Theme.TheLuckyAppTest.XX_SmallText.DarkGray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/textView_new_price"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintTop_toTopOf="@id/textView_new_price"
-            tools:text="Exp.28 April 2020" />
+            <TextView
+                android:id="@+id/textView_new_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_xxsmall"
+                android:lineSpacingExtra="3dp"
+                android:text="@{viewModel.offerDetails.price.new}"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/xmedium_font"
+                app:layout_constraintStart_toEndOf="@id/textView_old_price"
+                app:layout_constraintTop_toBottomOf="@id/textView_price_title"
+                tools:text="EGP500" />
 
-        <TextView
-            android:id="@+id/textView_redemption_cap"
-            style="@style/Theme.TheLuckyAppTest.XX_SmallText.DarkGray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xxbig"
-            android:layout_marginBottom="@dimen/spacing_xxxbig"
-            android:lineSpacingExtra="2dp"
-            android:textColor="@color/gray_800"
-            android:textSize="@dimen/x_small_font"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/textView_new_price"
-            app:layout_constraintVertical_bias="0"
-            tools:text="Exp.28 April 2020" />
+            <TextView
+                android:id="@+id/textView_expiration_date"
+                style="@style/Theme.TheLuckyAppTest.XX_SmallText.DarkGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.offerDetails.expiration}"
+                app:layout_constraintBottom_toBottomOf="@id/textView_new_price"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintTop_toTopOf="@id/textView_new_price"
+                tools:text="Exp.28 April 2020" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView_redemption_cap"
+                style="@style/Theme.TheLuckyAppTest.XX_SmallText.DarkGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xxbig"
+                android:layout_marginBottom="@dimen/spacing_xxxbig"
+                android:lineSpacingExtra="2dp"
+                android:text="@{viewModel.offerDetails.redemptionCap}"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/x_small_font"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/textView_new_price"
+                app:layout_constraintVertical_bias="0"
+                tools:text="Exp.28 April 2020" />
 
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

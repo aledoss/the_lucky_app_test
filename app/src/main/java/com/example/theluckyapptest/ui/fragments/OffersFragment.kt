@@ -81,5 +81,4 @@ class OffersFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
