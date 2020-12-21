@@ -15,3 +15,12 @@ fun View.hide(): View {
     }
     return this
 }
+
+fun View.show(show: Boolean): View {
+    if (show) {
+        this.show()
+    } else {
+        this.hide()
+    }
+    return this
+}
