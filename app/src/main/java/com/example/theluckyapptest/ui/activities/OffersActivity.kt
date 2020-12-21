@@ -1,6 +1,7 @@
 package com.example.theluckyapptest.ui.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
@@ -47,7 +48,8 @@ class OffersActivity : AppCompatActivity(), OffersNavigation, BaseViewListener {
     }
 
     override fun showLoading(show: Boolean) {
-        TODO("Not yet implemented")
+        val visibility = if (show) View.VISIBLE else View.GONE
+        binding.layoutLoaders.visibility = visibility
     }
 
     override fun showBackIcon(show: Boolean) {
