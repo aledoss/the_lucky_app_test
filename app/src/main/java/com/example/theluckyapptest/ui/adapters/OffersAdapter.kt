@@ -12,6 +12,7 @@ import com.example.theluckyapptest.data.offersectionsviewtype.VIEW_TYPE_OFFER
 import com.example.theluckyapptest.databinding.ItemOfferBinding
 import com.example.theluckyapptest.databinding.ItemTitleBinding
 import com.example.theluckyapptest.extensions.loadFromUrl
+import com.example.theluckyapptest.helpers.RoundCornersTransform
 
 class OffersAdapter(private val listener: OnOfferClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -62,7 +63,13 @@ class OffersAdapter(private val listener: OnOfferClickListener) :
                 textViewDescription.text = offer.title
                 textViewTags.text = offer.tags
                 textViewFavouriteCount.text = offer.favoriteCount.toString()
-                imageViewLogo.loadFromUrl(offer.imageUrl)
+                imageViewLogo.loadFromUrl(
+                    offer.imageUrl, RoundCornersTransform(
+                        imageViewLogo.context.resources.getDimensionPixelSize(
+                            R.dimen.spacing_xxxsmall
+                        ).toFloat()
+                    )
+                )
                 itemView.setOnClickListener { listener.onClick(offer) }
             }
         }
