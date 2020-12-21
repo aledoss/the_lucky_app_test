@@ -40,6 +40,12 @@ class OffersActivity : AppCompatActivity(), OffersNavigation, BaseViewListener {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             addToBackStack(null)
+            setCustomAnimations(
+                R.anim.slide_in_right,
+                R.anim.slide_out_left,
+                R.anim.slide_in_left,
+                R.anim.slide_out_right
+            )
             replace(
                 R.id.fragmentContainerView,
                 OfferDetailsFragment.newInstance(offerUrl),
