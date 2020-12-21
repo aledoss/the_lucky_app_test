@@ -8,9 +8,10 @@ import androidx.fragment.app.commit
 import com.example.theluckyapptest.R
 import com.example.theluckyapptest.data.ErrorScreenData
 import com.example.theluckyapptest.databinding.ActivityOffersBinding
+import com.example.theluckyapptest.extensions.hide
+import com.example.theluckyapptest.extensions.show
 import com.example.theluckyapptest.navigation.OffersNavigation
 import com.example.theluckyapptest.ui.fragments.BaseViewListener
-import com.example.theluckyapptest.ui.fragments.ErrorFragment
 import com.example.theluckyapptest.ui.fragments.OfferDetailsFragment
 import com.example.theluckyapptest.ui.fragments.OffersFragment
 
@@ -61,15 +62,17 @@ class OffersActivity : AppCompatActivity(), OffersNavigation, BaseViewListener {
         supportActionBar?.title = title
     }
 
-    override fun showErrorScreen(errorScreenData: ErrorScreenData) {
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            addToBackStack(null)
-            replace(
-                R.id.fragmentContainerView,
-                ErrorFragment.newInstance(errorScreenData),
-                ErrorFragment::class.simpleName
-            )
+    override fun showErrorScreen(errorData: ErrorScreenData) {
+        binding.apply {
+            fragmentContainerView.hide()
+            layoutErrorScreen.root.show()
+            layoutErrorScreen.textViewTitle.text = getString(errorData.title)
+            layoutErrorScreen.textViewDescription.text = getString(errorData.message)
+            layoutErrorScreen.buttonRetry.setOnClickListener {
+                errorData.retryAction()
+                root.hide()
+                fragmentContainerView.show()
+            }
         }
     }
 }

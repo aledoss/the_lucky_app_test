@@ -31,4 +31,9 @@
             android:layout_gravity="center" />
     </FrameLayout>
 
+    <include
+        android:id="@+id/layoutErrorScreen"
+        android:visibility="gone"
+        layout="@layout/layout_error"/>
+
 </FrameLayout>
