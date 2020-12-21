@@ -3,6 +3,8 @@ package com.example.theluckyapptest.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.theluckyapptest.R
+import com.example.theluckyapptest.data.ErrorScreenData
 import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
 import com.example.theluckyapptest.repositories.OffersRepository
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +24,18 @@ class OffersViewModel(
     private fun retrieveOffers() {
         showLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
-            _offersSections.postValue(offersRepository.getOffersSections())
-            showLoading.postValue(false)
+            try {
+                _offersSections.postValue(offersRepository.getOffersSections())
+            } catch (exception: Exception) {
+                errorScreenData.postValue(
+                    ErrorScreenData(
+                        message = R.string.error_occurred_retrieving_offers,
+                        retryAction = { retrieveOffers() }
+                    )
+                )
+            } finally {
+                showLoading.postValue(false)
+            }
         }
     }
 }

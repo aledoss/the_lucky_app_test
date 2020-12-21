@@ -72,6 +72,7 @@ class OffersFragment : BaseFragment() {
     private fun bindViewModel() {
         viewModel.offerSections.observe(viewLifecycleOwner, Observer(::updateOffersAdapter))
         viewModel.getShowLoading.observe(viewLifecycleOwner, Observer(::showLoading))
+        viewModel.getErrorScreenData.observe(viewLifecycleOwner, Observer(::showErrorScreen))
     }
 
     private fun updateOffersAdapter(offersSections: List<OffersSectionsViewType>) {
