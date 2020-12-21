@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -54,6 +55,15 @@ class OfferDetailsFragment : BaseFragment() {
 
     private fun bindViewModel() {
         viewModel.getShowLoading.observe(viewLifecycleOwner, Observer(::showLoading))
+        viewModel.getErrorScreenData.observe(viewLifecycleOwner, Observer(::showErrorScreen))
+        viewModel.isOfferInvalid.observe(viewLifecycleOwner, Observer(::onInvalidOffer))
+    }
+
+    private fun onInvalidOffer(isInvalid: Boolean) {
+        if (isInvalid) {
+            Toast.makeText(requireContext(), R.string.offer_invalid, Toast.LENGTH_LONG).show()
+            closeScreen()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

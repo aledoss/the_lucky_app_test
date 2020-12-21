@@ -3,7 +3,10 @@ package com.example.theluckyapptest.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.theluckyapptest.R
+import com.example.theluckyapptest.data.ErrorScreenData
 import com.example.theluckyapptest.data.OfferDetails
+import com.example.theluckyapptest.helpers.SingleLiveEvent
 import com.example.theluckyapptest.repositories.OffersRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,19 +19,34 @@ class OfferDetailsViewModel(
     private val _offerDetails = MutableLiveData<OfferDetails>()
     val offerDetails: LiveData<OfferDetails> = _offerDetails
 
+    private val _isOfferInvalid = SingleLiveEvent<Boolean>()
+    val isOfferInvalid: SingleLiveEvent<Boolean> = _isOfferInvalid
+
     init {
-        retrieveOfferDetails(offerUrl)
+        if (offerUrl.isNotEmpty()) {
+            retrieveOfferDetails(offerUrl)
+        } else {
+            isOfferInvalid.value = true
+        }
     }
 
     private fun retrieveOfferDetails(offerUrl: String) {
         showLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getOfferDetails(offerUrl)
-                .also {
-                    _offerDetails.postValue(it)
-                }
-            showLoading.postValue(false)
+            try {
+                _offerDetails.postValue(
+                    repository.getOfferDetails(offerUrl)
+                )
+            } catch (exception: Exception) {
+                errorScreenData.postValue(
+                    ErrorScreenData(
+                        message = R.string.error_occurred_retrieving_offer,
+                        retryAction = { retrieveOfferDetails(offerUrl) }
+                    )
+                )
+            } finally {
+                showLoading.postValue(false)
+            }
         }
     }
-
 }

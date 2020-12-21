@@ -11,4 +11,6 @@
     <string name="error">Error</string>
     <string name="oops">Oops..</string>
     <string name="error_occurred_retrieving_offers">An error occurred when retrieving offers.</string>
+    <string name="error_occurred_retrieving_offer">An error occurred when retrieving the offer.</string>
+    <string name="offer_invalid">The offer you are trying to reach is invalid. Please try later.</string>
 </resources>
