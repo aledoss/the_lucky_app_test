@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.theluckyapptest.R
+import com.example.theluckyapptest.data.ErrorScreenData
 import com.example.theluckyapptest.databinding.ActivityOffersBinding
 import com.example.theluckyapptest.navigation.OffersNavigation
+import com.example.theluckyapptest.ui.fragments.BaseViewListener
 import com.example.theluckyapptest.ui.fragments.OfferDetailsFragment
 import com.example.theluckyapptest.ui.fragments.OffersFragment
 
-class OffersActivity : AppCompatActivity(), OffersNavigation {
+class OffersActivity : AppCompatActivity(), OffersNavigation, BaseViewListener {
 
     private val binding: ActivityOffersBinding by lazy {
         ActivityOffersBinding.inflate(layoutInflater)
@@ -23,7 +25,6 @@ class OffersActivity : AppCompatActivity(), OffersNavigation {
         if (savedInstanceState == null) {
             showOffersFragment()
         }
-        supportActionBar?.title = getString(R.string.offers)
     }
 
     private fun showOffersFragment() {
@@ -43,5 +44,21 @@ class OffersActivity : AppCompatActivity(), OffersNavigation {
                 OfferDetailsFragment::class.simpleName
             )
         }
+    }
+
+    override fun showLoading(show: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showBackIcon(show: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(show)
+    }
+
+    override fun updateToolbarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
+    override fun showErrorScreen(errorScreenData: ErrorScreenData) {
+        TODO("Not yet implemented")
     }
 }
