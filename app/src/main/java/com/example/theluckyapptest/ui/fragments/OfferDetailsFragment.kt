@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.theluckyapptest.R
 import com.example.theluckyapptest.databinding.FragmentOfferDetailsBinding
 import com.example.theluckyapptest.providers.RepositoryProvider
@@ -46,8 +47,13 @@ class OfferDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bindViewModel()
         setHasOptionsMenu(true)
         updateToolbarTitle(getString(R.string.offer))
+    }
+
+    private fun bindViewModel() {
+        viewModel.getShowLoading.observe(viewLifecycleOwner, Observer(::showLoading))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
