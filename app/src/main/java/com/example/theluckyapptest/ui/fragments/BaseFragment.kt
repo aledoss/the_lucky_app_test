@@ -36,8 +36,8 @@ abstract class BaseFragment : Fragment() {
 }
 
 interface BaseViewListener {
-    fun showLoading(show: Boolean)
+    fun showLoading(showLoading: Boolean)
     fun showBackIcon(show: Boolean)
     fun updateToolbarTitle(title: String)
-    fun showErrorScreen(errorScreenData: ErrorScreenData)
+    fun showErrorScreen(errorData: ErrorScreenData)
 }
