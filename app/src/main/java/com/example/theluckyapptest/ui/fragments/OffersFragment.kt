@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.theluckyapptest.R
@@ -19,7 +18,7 @@ import com.example.theluckyapptest.ui.adapters.OffersAdapter
 import com.example.theluckyapptest.viewmodels.OffersViewModel
 import com.example.theluckyapptest.viewmodels.factories.OffersViewModelFactory
 
-class OffersFragment : Fragment() {
+class OffersFragment : BaseFragment() {
 
     private val viewModel: OffersViewModel by viewModels {
         OffersViewModelFactory(RepositoryProvider.offersRepository)
@@ -56,6 +55,7 @@ class OffersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bindViewModel()
         configureRecyclerView()
+        updateToolbarTitle(getString(R.string.offers))
     }
 
     private fun configureRecyclerView() {
@@ -71,6 +71,7 @@ class OffersFragment : Fragment() {
 
     private fun bindViewModel() {
         viewModel.offerSections.observe(viewLifecycleOwner, Observer(::updateOffersAdapter))
+        viewModel.getShowLoading.observe(viewLifecycleOwner, Observer(::showLoading))
     }
 
     private fun updateOffersAdapter(offersSections: List<OffersSectionsViewType>) {
