@@ -36,6 +36,9 @@ class OffersViewModelTest {
     lateinit var offerSectionObserver: Observer<List<OfferSectionViewType>>
 
     @Mock
+    lateinit var offersQuantityObserver: Observer<Int>
+
+    @Mock
     lateinit var errorScreenDataObserver: Observer<ErrorScreenData>
 
     private val offersSectionsViewType = OffersSectionsViewType(
@@ -74,8 +77,17 @@ class OffersViewModelTest {
     fun `given success state, when viewModel is initialized, then offersSections changed to offersSectionsViewType value`() {
         runBlocking {
             initViewModel()
-            delay(3500)
+            delay(3000)
             verify(offerSectionObserver).onChanged(offersSectionsViewType.offersSectionsViewTypes)
+        }
+    }
+
+    @Test
+    fun `given success state, when viewModel is initialized, then offersQuantity changed to offersQuantity value`() {
+        runBlocking {
+            initViewModel()
+            delay(3000)
+            verify(offersQuantityObserver).onChanged(offersSectionsViewType.offersQuantity)
         }
     }
 
@@ -101,6 +113,7 @@ class OffersViewModelTest {
     private fun createViewModel() = OffersViewModel(offersRepository).apply {
         getShowLoading.observeForever(loadingObserver)
         offerSections.observeForever(offerSectionObserver)
+        offersQuantity.observeForever(offersQuantityObserver)
         getErrorScreenData.observeForever(errorScreenDataObserver)
     }
 
