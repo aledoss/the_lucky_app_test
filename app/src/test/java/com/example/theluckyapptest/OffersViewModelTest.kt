@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theluckyapptest.data.ErrorScreenData
 import com.example.theluckyapptest.data.offersectionsviewtype.OfferSectionViewType
+import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
 import com.example.theluckyapptest.repositories.OffersRepository
 import com.example.theluckyapptest.viewmodels.OffersViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -37,11 +38,14 @@ class OffersViewModelTest {
     @Mock
     lateinit var errorScreenDataObserver: Observer<ErrorScreenData>
 
-    private val offerSectionViewType: List<OfferSectionViewType> = listOf(
-        object : OfferSectionViewType {
-            override fun getViewType() = 0
-            override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder) = Unit
-        }
+    private val offersSectionsViewType = OffersSectionsViewType(
+        OFFERS_QUANTITY,
+        listOf(
+            object : OfferSectionViewType {
+                override fun getViewType() = 0
+                override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder) = Unit
+            }
+        )
     )
 
     @Before
@@ -71,7 +75,7 @@ class OffersViewModelTest {
         runBlocking {
             initViewModel()
             delay(3500)
-            verify(offerSectionObserver).onChanged(offerSectionViewType)
+            verify(offerSectionObserver).onChanged(offersSectionsViewType.offersSectionsViewTypes)
         }
     }
 
@@ -85,7 +89,7 @@ class OffersViewModelTest {
     }
 
     private suspend fun initViewModel() {
-        `when`(offersRepository.getOffersSections()).thenReturn(offerSectionViewType)
+        `when`(offersRepository.getOffersSections()).thenReturn(offersSectionsViewType)
         createViewModel()
     }
 
@@ -98,5 +102,9 @@ class OffersViewModelTest {
         getShowLoading.observeForever(loadingObserver)
         offerSections.observeForever(offerSectionObserver)
         getErrorScreenData.observeForever(errorScreenDataObserver)
+    }
+
+    private companion object {
+        const val OFFERS_QUANTITY = 1
     }
 }
