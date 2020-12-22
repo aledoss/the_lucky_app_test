@@ -3,6 +3,7 @@
     <!-- Spacing -->
     <dimen name="spacing_xxxsmall">2dp</dimen>
     <dimen name="spacing_xxsmall">4dp</dimen>
+    <dimen name="spacing_medium">12dp</dimen>
     <dimen name="spacing_large">16dp</dimen>
     <dimen name="spacing_xxlarge">24dp</dimen>
     <dimen name="spacing_xxxlarge">32dp</dimen>
