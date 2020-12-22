@@ -73,9 +73,9 @@ class OffersActivity : AppCompatActivity(), OffersNavigation, BaseViewListener {
             layoutErrorScreen.textViewTitle.text = getString(errorData.title)
             layoutErrorScreen.textViewDescription.text = getString(errorData.message)
             layoutErrorScreen.buttonRetry.setOnClickListener {
-                errorData.retryAction()
-                root.hide()
+                binding.layoutErrorScreen.root.hide()
                 fragmentContainerView.show()
+                errorData.retryAction()
             }
         }
     }
