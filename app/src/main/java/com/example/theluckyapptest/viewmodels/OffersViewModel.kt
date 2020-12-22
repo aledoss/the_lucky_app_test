@@ -17,6 +17,9 @@ class OffersViewModel(
     private val _offersSections = MutableLiveData<List<OfferSectionViewType>>()
     val offerSections: LiveData<List<OfferSectionViewType>> = _offersSections
 
+    private val _offersQuantity = MutableLiveData<Int>()
+    val offersQuantity: LiveData<Int> = _offersQuantity
+
     init {
         retrieveOffers()
     }
@@ -25,7 +28,9 @@ class OffersViewModel(
         showLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _offersSections.postValue(offersRepository.getOffersSections())
+                val offersSectionsViewType = offersRepository.getOffersSections()
+                _offersSections.postValue(offersSectionsViewType.offersSectionsViewTypes)
+                _offersQuantity.postValue(offersSectionsViewType.offersQuantity)
             } catch (exception: Exception) {
                 errorScreenData.postValue(
                     ErrorScreenData(

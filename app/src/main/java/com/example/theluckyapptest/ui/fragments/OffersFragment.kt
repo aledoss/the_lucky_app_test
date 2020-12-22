@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.theluckyapptest.R
 import com.example.theluckyapptest.data.Margin
-import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
+import com.example.theluckyapptest.data.offersectionsviewtype.OfferSectionViewType
 import com.example.theluckyapptest.databinding.FragmentOffersBinding
 import com.example.theluckyapptest.helpers.MarginItemDecoration
 import com.example.theluckyapptest.navigation.OffersNavigation
@@ -71,12 +71,18 @@ class OffersFragment : BaseFragment() {
 
     private fun bindViewModel() {
         viewModel.offerSections.observe(viewLifecycleOwner, Observer(::updateOffersAdapter))
+        viewModel.offersQuantity.observe(viewLifecycleOwner, Observer(::updateOffersQuantity))
         viewModel.getShowLoading.observe(viewLifecycleOwner, Observer(::showLoading))
         viewModel.getErrorScreenData.observe(viewLifecycleOwner, Observer(::showErrorScreen))
     }
 
-    private fun updateOffersAdapter(offersSections: List<OffersSectionsViewType>) {
+    private fun updateOffersAdapter(offersSections: List<OfferSectionViewType>) {
         adapter.updateOffers(offersSections)
+    }
+
+    private fun updateOffersQuantity(quantity: Int) {
+        binding.textViewOffersQuantity.text =
+            resources.getQuantityString(R.plurals.numberOfOffers, quantity, quantity)
     }
 
     override fun onDestroyView() {
