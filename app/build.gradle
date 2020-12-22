@@ -45,8 +45,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 
     // Fragments
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
@@ -54,8 +52,14 @@ dependencies {
     // Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
 
-    //Retrofit 2
+    // Retrofit 2
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
+
+    // Testing
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.mockito:mockito-core:2.23.0'
+    testImplementation "android.arch.core:core-testing:1.1.1"
 }
