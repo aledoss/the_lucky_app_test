@@ -23,7 +23,7 @@ class OfferDetailsViewModel(
     val isOfferInvalid: SingleLiveEvent<Boolean> = _isOfferInvalid
 
     init {
-        if (offerUrl.isNotEmpty()) {
+        if (isOfferUrlValid(offerUrl)) {
             retrieveOfferDetails(offerUrl)
         } else {
             isOfferInvalid.value = true
@@ -49,4 +49,6 @@ class OfferDetailsViewModel(
             }
         }
     }
+
+    private fun isOfferUrlValid(offerUrl: String) = offerUrl.isNotEmpty()
 }
