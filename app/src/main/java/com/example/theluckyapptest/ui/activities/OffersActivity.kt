@@ -79,4 +79,12 @@ class OffersActivity : AppCompatActivity(), OffersNavigation, BaseViewListener {
             }
         }
     }
+
+    override fun onBackPressed() {
+        binding.apply {
+            layoutErrorScreen.root.hide()
+            showLoading(false)
+        }
+        super.onBackPressed()
+    }
 }
