@@ -1,12 +1,12 @@
 package com.example.theluckyapptest.extensions
 
 import com.example.theluckyapptest.data.OffersSection
+import com.example.theluckyapptest.data.offersectionsviewtype.OfferSectionViewType
 import com.example.theluckyapptest.data.offersectionsviewtype.OfferViewType
-import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
 import com.example.theluckyapptest.data.offersectionsviewtype.SectionViewType
 
-fun List<OffersSection>.toOfferSectionsViewType(): List<OffersSectionsViewType> {
-    val offersSections = mutableListOf<OffersSectionsViewType>()
+fun List<OffersSection>.toOfferSectionsViewType(): List<OfferSectionViewType> {
+    val offersSections = mutableListOf<OfferSectionViewType>()
     this.forEach {
         offersSections.add(SectionViewType(it.title))
         it.offers.forEach { offer ->

@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theluckyapptest.data.ErrorScreenData
-import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
+import com.example.theluckyapptest.data.offersectionsviewtype.OfferSectionViewType
 import com.example.theluckyapptest.repositories.OffersRepository
 import com.example.theluckyapptest.viewmodels.OffersViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,13 +32,13 @@ class OffersViewModelTest {
     lateinit var loadingObserver: Observer<Boolean>
 
     @Mock
-    lateinit var offersSectionsObserver: Observer<List<OffersSectionsViewType>>
+    lateinit var offerSectionObserver: Observer<List<OfferSectionViewType>>
 
     @Mock
     lateinit var errorScreenDataObserver: Observer<ErrorScreenData>
 
-    private val offersSectionsViewType: List<OffersSectionsViewType> = listOf(
-        object : OffersSectionsViewType {
+    private val offerSectionViewType: List<OfferSectionViewType> = listOf(
+        object : OfferSectionViewType {
             override fun getViewType() = 0
             override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder) = Unit
         }
@@ -71,7 +71,7 @@ class OffersViewModelTest {
         runBlocking {
             initViewModel()
             delay(3500)
-            verify(offersSectionsObserver).onChanged(offersSectionsViewType)
+            verify(offerSectionObserver).onChanged(offerSectionViewType)
         }
     }
 
@@ -85,7 +85,7 @@ class OffersViewModelTest {
     }
 
     private suspend fun initViewModel() {
-        `when`(offersRepository.getOffersSections()).thenReturn(offersSectionsViewType)
+        `when`(offersRepository.getOffersSections()).thenReturn(offerSectionViewType)
         createViewModel()
     }
 
@@ -96,7 +96,7 @@ class OffersViewModelTest {
 
     private fun createViewModel() = OffersViewModel(offersRepository).apply {
         getShowLoading.observeForever(loadingObserver)
-        offerSections.observeForever(offersSectionsObserver)
+        offerSections.observeForever(offerSectionObserver)
         getErrorScreenData.observeForever(errorScreenDataObserver)
     }
 }

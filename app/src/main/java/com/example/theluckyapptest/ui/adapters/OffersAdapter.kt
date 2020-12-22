@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theluckyapptest.R
 import com.example.theluckyapptest.data.Offer
-import com.example.theluckyapptest.data.offersectionsviewtype.OffersSectionsViewType
+import com.example.theluckyapptest.data.offersectionsviewtype.OfferSectionViewType
 import com.example.theluckyapptest.data.offersectionsviewtype.VIEW_TYPE_HEADER
 import com.example.theluckyapptest.data.offersectionsviewtype.VIEW_TYPE_OFFER
 import com.example.theluckyapptest.databinding.ItemOfferBinding
@@ -17,7 +17,7 @@ import com.example.theluckyapptest.helpers.RoundCornersTransform
 class OffersAdapter(private val listener: OnOfferClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var offersSections: List<OffersSectionsViewType> = emptyList()
+    private var offersSections: List<OfferSectionViewType> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -47,7 +47,7 @@ class OffersAdapter(private val listener: OnOfferClickListener) :
     override fun getItemViewType(position: Int) =
         offersSections[position].getViewType()
 
-    fun updateOffers(offersSections: List<OffersSectionsViewType>) {
+    fun updateOffers(offersSections: List<OfferSectionViewType>) {
         this.offersSections = offersSections
         notifyDataSetChanged()
     }
